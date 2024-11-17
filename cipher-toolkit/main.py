@@ -35,6 +35,14 @@ class toolkit:
             func()
     @staticmethod
     def B64():
+        """
+        Base 64 decoder
+        
+        Asks the user for the Base64 String and decodes it.
+        
+        Raises:
+            Exception: if there was an error when decoding a base64 string.
+        """
         inp = input('Eneter Base64 String:\n> ')
         try:
             decoded=base64.b64decode(inp).decode('utf-8')
@@ -44,6 +52,14 @@ class toolkit:
             print('Error decoding Base64:',e)
     @staticmethod
     def B32():
+        """
+        Base 32 decoder
+        
+        Asks the user for the Base32 String and decodes it.
+        
+        Raises:
+            Exception: if there was an error when decoding a base32 string.
+        """
         inp = input('Enter Base32 String:\n> ')
         try:
             decoded = base64.b32decode(inp).decode('utf-8')
@@ -53,6 +69,12 @@ class toolkit:
             print('Error decoding Base32:',e)
     @staticmethod
     def BinaryToText():
+        """
+        Binary to text decoder
+        
+        Asks the user for the Binary String and decodes it.
+        
+        """
         inp = input('Enter Binary String:\n> ')
         inp = inp.split()
         collection = [chr(int(i, 2)) for i in inp]
