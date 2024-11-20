@@ -11,6 +11,31 @@ It runs in the commandline.
 """
 
 import base64
+import re
+
+class craker:
+    def main(s):
+        # while not('CAHSI'in s):            
+            if(helper.is_binary_string('01010101')):
+                toolkit.BinaryToText()
+            print('Happy cracking!')
+
+class helper:
+    def identifier(s):
+        # This is for binary
+        if(bool(re.fullmatch(r'[01]*', s))):
+            return 'binary'
+        # This is for Base64
+        elif(bool(re.fullmatch(r'.*=$', s))):
+            return 'base64'
+        elif all(33 <= ord(c) <= 126 for c in s):
+            return 'rot47'
+        elif re.fullmatch(r'^[A-Za-z]+$', s):
+            return 'rot13'
+        else:
+            return 'unknown'
+    def is_binary_string(s):
+        return True;
 
 class toolkit:
     @staticmethod
@@ -87,4 +112,6 @@ class toolkit:
         exit()
 
 if __name__ == "__main__":
-    toolkit.main()
+    # toolkit.main()
+    # craker.main()
+    print(helper.identifier('uryyb'))
