@@ -1,5 +1,5 @@
+import re
 
-import string
 """
 Code to bruteforce caesar cipher
 """
@@ -7,12 +7,12 @@ alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 """
 This function will make sure to bruteforce the caesar cipher
 """
-def caesar_cipher_bruteforce():
-    msg = input("Enter the message you would like to decrypt: ").strip()
+def caesar_cipher_bruteforce(msg):
+    msg = msg.strip()
     for i in range(0,26):
         holder = caesar_cipher(msg, i)
         if 'CAHSI' in holder:
-            return holder 
+            return f'Key: {i}\nMessage: {holder}' 
 """
 This is the algorithm of caesar cipher
 """
@@ -29,13 +29,30 @@ def caesar_cipher(msg,key):
             plaintext += char
     return plaintext
 
+# This might be to implement the cipher from binary to hex and viceversa
+def identifier(s):
+    # This is for binary
+    if(bool(re.fullmatch(r'[01]+', s))):
+        return 'binary'
+    elif bool(re.fullmatch(r'([0-9A-Fa-f]{2}\s*)+', s)):
+        return 'hex'
+    # This is for Base64
+    elif(bool(re.fullmatch(r'.*=$', s))):
+        return 'base64'
+    # elif all(33 <= ord(c) <= 126 for c in s):
+    elif bool(re.fullmatch(r'^[!-~]+$',s)):
+        return 'rot47'
+    else:
+        return 'unknown'
 
 
 
 def brute_force():
-    
+    user = input("Enter the cipher to crack:\n>")
+    # identifier(user)
+    caesar_cipher_bruteforce(user)
     print("Done")
 
 
 if __name__ == "__main__":
-    print(brute_force())
+    brute_force()
