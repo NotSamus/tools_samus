@@ -68,7 +68,7 @@ class toolkit:
         Raises:
             Exception: if there was an error when decoding a base64 string.
         """
-        inp = input('Eneter Base64 String:\n> ')
+        inp = input('Enter Base64 String:\n> ')
         try:
             decoded=base64.b64decode(inp).decode('utf-8')
             print('')
